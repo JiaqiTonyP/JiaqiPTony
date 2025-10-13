@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiaqi Tony Peng - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #0a0a0a;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at top, #1e1b4b 0%, #000 50%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 5%;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 5%;
+            position: relative;
+            background: #000;
+        }
+
+        .section:nth-child(even) {
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50px;
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            opacity: 0.3;
+            filter: blur(40px);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .highlight-item h4 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .card-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .card-content h4 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-content {
+            padding: 2rem;
+        }
+
+        .video-content h4 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .video-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 30px 100px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: rotate(90deg);
+        }
+
+        .modal-close::before,
+        .modal-close::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+        }
+
+        .modal-close::before {
+            transform: rotate(45deg);
+        }
+
+        .modal-close::after {
+            transform: rotate(-45deg);
+        }
+
+        .modal-header {
+            padding: 3rem 3rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header h3 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-header .modal-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .modal-section {
+            margin-bottom: 3rem;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section h4 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-section p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-video {
+            width: 100%;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .modal-stat-item {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-stat-item .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-stat-item .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #667eea;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .profile-image {
+                max-width: 400px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 5rem 5%;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .profile-image {
+                height: 400px;
+            }
+
+            .modal-content {
+                margin: 0;
+                border-radius: 20px;
+            }
+
+            .modal-header {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .modal-header h3 {
+                font-size: 1.8rem;
+            }
+
+            .modal-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-close {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">JqT</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#activities">Activities</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Jiaqi Tony Peng</h1>
+            <p>Future Computer Scientist & Geologist | Building Tomorrow's Solutions Through Technology, Science & Music</p>
+            <a href="#about" class="cta-button">Explore My Journey</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Passionate about technology, earth sciences, and creative expression</p>
+            </div>
+            
+            <div class="about-content fade-up">
+                <div class="profile-image-wrapper">
+                    <img src="images/profile.jpg" alt="Jiaqi Tony Peng" class="profile-image">
+                </div>
+                <div class="about-text">
+                    <h3>Hello, I'm Jiaqi Tony</h3>
+                    <p>I'm a driven high school student with an insatiable curiosity for understanding both the digital realm and the natural world. My dual passions for computer science and geology represent two sides of problem-solving: one focused on creating innovative technological solutions, and the other on uncovering the mysteries of our planet.</p>
+                    <p>Through music, I've discovered a powerful medium for creative expression and connection. Whether I'm coding algorithms, analyzing geological formations, or performing with my instrument, I approach each challenge with the same dedication and enthusiasm.</p>
+                    <p>I believe in leveraging technology and scientific knowledge to create positive change in our communities and environment. As I prepare for college, I'm excited to deepen my expertise and contribute to meaningful research and innovation in STEM fields.</p>
+                </div>
+            </div>
+
+            <div class="highlights fade-up">
+                <div class="highlight-item">
+                    <h4>4.0</h4>
+                    <p>GPA Achievement</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>15+</h4>
+                    <p>Awards & Honors</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>100+</h4>
+                    <p>Community Hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Activities -->
+    <section id="academics" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Academic Achievements</h2>
+                <p class="section-subtitle">Pushing boundaries in computer science, geology, and music</p>
+            </div>
+
+            <div class="card-grid fade-up">
+                <div class="card" onclick="openModal('modal-coding')">
+                    <img src="images/AcademicFtc.jpg" alt="Programming Competition" class="card-image">
+                    <div class="card-content">
+                        <h4>Ftc activity</h4>
+                        <p>First place in regional programming contest, developing innovative algorithms for real-world problems and demonstrating advanced problem-solving skills.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-geology')">
+                    <img src="images/Badaling-2411-2.jpg" alt="Geology Field Work" class="card-image">
+                    <div class="card-content">
+                        <h4>Badaling Great Wall Reinforcement Project</h4>
+                        <p>Participated in analyzing and calculating the sliding and anti-sliding forces of unstable rock masses beneath the Badaling Great Wall to support reinforcement and preservation efforts.</p>
+                    </div>
+                </div>
+
+
+
+                <div class="card" onclick="openModal('modal-binda')">
+                    <img src="images/binda1.jpg" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>The Penn Arts and Sciences High School Programs</h4>
+                        <p>Experimental Physics Research Academy, Penn Arts and Sciences High School Programs.</p>
+                    </div>
+                </div>
+
+               <div class="card" onclick="openModal('modal-jindengsi')">
+                    <img src="images/jindengsi1.jpg" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>Geophysical Survey of the Jindeng Temple Grottoes</h4>
+                        <p>Scientific Investigation and Conservation Practice at the Jindeng Temple Grottoes.</p>
+                    </div>
+                </div>
+
+               <div class="card" onclick="openModal('modal-budalagong')">
+                    <img src="images/budalagong1.jpg" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>Geophysical Study of the Potala Palace</h4>
+                        <p>Applied geophysical methods to detect groundwater depth and flow around the Potala Palace to assess its impact on the monument’s safety and stability.</p>
+                    </div>
+                </div>
+
+               <div class="card" onclick="openModal('modal-tongzisi')">
+                    <img src="images/tongzisi1.jpg" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>Geophysical Survey of the Longshan Grottoes and Tongzisi Site</h4>
+                        <p>Geophysical methods were applied to detect rock fissures and groundwater seepage at the Longshan Grottoes and Tongzisi Site, providing technical data for stabilizing unstable rock masses and protecting the grotto structures.</p>
+                    </div>
+                </div>
+
+
+               <div class="card" onclick="openModal('modal-yuanpei')">
+                    <img src="images/yuanpei1.JPG" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>GPA Optimization Modeling — Yuanpei Young Scholar Program</h4>
+                        <p>Developed a computational model to optimize GPA within a fixed time frame using programming and Gurobi.</p>
+                    </div>
+                </div>
+
+               <div class="card" onclick="openModal('modal-yungangshiku')">
+                    <img src="images/yungangshiku1.jpg" alt="Science Lab" class="card-image">
+                    <div class="card-content">
+                        <h4>Geophysical Investigation at the Yungang Grottoes</h4>
+                        <p>Applied multiple geophysical methods to identify water seepage channels at the Yungang Grottoes, providing technical data for waterproofing and conservation work.</p>
+                    </div>
+                </div>
+
+             
+
+            
+        </div>
+    </section>
+
+    <!-- Community Service -->
+    <section id="community" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Community Service</h2>
+                <p class="section-subtitle">Making a difference through education, conservation, and outreach</p>
+            </div>
+
+            <div class="card-grid fade-up">
+                <div class="card" onclick="openModal('modal-teaching')">
+                    <img src="images/fangshan2503-1.jpg" alt="Teaching Kids" class="card-image">
+                    <div class="card-content">
+                        <h4>Fangshan Welfare Center Community Program Music Performance</h4>
+                        <p>Performed live music for children at the welfare center, introducing them to the joy of rhythm and melody through interactive performances.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-environment')">
+                    <img src="images/fangshan2505-1.jpg" alt="Environmental Cleanup" class="card-image">
+                    <div class="card-content">
+                        <h4>Fangshan Welfare Center Community Program Music Teaching</h4>
+                        <p>Taught children the basics of guitar playing and rhythm, encouraging creativity and confidence through hands-on musical learning.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-senior')">
+                    <img src="images/fangshan24-1.jpg" alt="Senior Center Visit" class="card-image">
+                    <div class="card-content">
+                        <h4>Fangshan Welfare Center Community Program Music Donation</h4>
+                        <p>Donated guitars and established a “Music Corner” using club prize funds, creating a lasting space for children to explore music and self-expression.</p>
+                    </div>
+                </div>
+
+               
+            </div>
+
+           
+        </div>
+    </section>
+
+    <!-- Extracurricular Activities -->
+    <section id="activities" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Extracurricular Activities</h2>
+                <p class="section-subtitle">Leadership, teamwork, and personal growth beyond the classroom</p>
+            </div>
+
+            <div class="card-grid fade-up">
+                <div class="card" onclick="openModal('modal-robotics')">
+                    <img src="images/chuyisai1.jpg" alt="Robotics Team" class="card-image">
+                    <div class="card-content">
+                        <h4>厨艺争霸赛</h4>
+                        <p>Leading our school's robotics team to regional championships, designing autonomous navigation systems and complex mechanisms.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-modelun')">
+                    <img src="images/yuedui1.jpg" alt="Model UN" class="card-image">
+                    <div class="card-content">
+                        <h4>乐队合集</h4>
+                        <p>Representing various nations in Model United Nations conferences, developing diplomatic skills and global awareness.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-basketball')">
+                    <img src="images/shufa1.jpg" alt="Basketball Team" class="card-image">
+                    <div class="card-content">
+                        <h4>书法</h4>
+                        <p>Starting point guard for the varsity basketball team, demonstrating leadership and balancing athletics with academic excellence.</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('modal-newspaper')">
+                    <img src="images/zuofan1.jpg" alt="School Newspaper" class="card-image">
+                    <div class="card-content">
+                        <h4>做饭</h4>
+                        <p>Managing the school's digital newspaper, covering science and technology topics while fostering journalistic excellence.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Academic Modals -->
+    <div id="modal-coding" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-coding')"></div>
+            <div class="modal-header">
+                <h3>Coding Competition Champion</h3>
+                <p class="modal-subtitle">Regional Programming Contest - First Place Winner</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>The Challenge</h4>
+                    <p>Competed against 50+ talented programmers from across the region in a high-stakes coding marathon. The competition focused on developing efficient algorithms to solve complex real-world optimization problems within strict time constraints.</p>
+                    <img src="images/AcademicFtc-horizontal.jpg" alt="Competition Day" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-geology" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-binda')"></div>
+            <div class="modal-header">
+                <h3>Badaling Great Wall Reinforcement Project</h3>
+                <p class="modal-subtitle">Geological Research</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Activity Overview</h4>
+                    <p> The Badaling Great Wall, located in Yanqing District, Beijing, is both a nationally protected cultural heritage site and a UNESCO World Heritage site. The unstable rock mass beneath the North Seventh Tower poses a collapse risk that threatens the visitor passage below and the structural safety of the historic tower above.
+
+As a member of the technical practice team, I applied principles of physics, mathematics, and mechanics to conduct force analysis and stability calculations. Specifically, I participated in estimating the sliding force acting on the unstable rock body and calculating the anti-sliding resistance required for reinforcement. These computations provided a scientific and technical basis for the stabilization of the rock mass, contributing to the safety and preservation of the Great Wall’s heritage structure.</p>
+                    <img src="images/Badaling-2411-3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/Badaling-2411-1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/Badaling-2504-1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/Badaling-2504-2.jpg" alt="Laboratory Work" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-binda" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-binda')"></div>
+            <div class="modal-header">
+                <h3>Penn Arts and Sciences High School Programs</h3>
+                <p class="modal-subtitle">Summer School</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Activity Overview</h4>
+                    <p>Participated in the Experimental Physics Research Academy at the University of Pennsylvania from July 5 to July 26, 2025. The program provided intensive training in experimental and theoretical physics, including topics such as classical mechanics, electromagnetism, and data analysis. Engaged in hands-on laboratory experiments and collaborative research projects that strengthened both scientific reasoning and experimental design skills.</p>
+                    <img src="images/binda2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/binda3.jpg" alt="Laboratory Work" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-tongzisi" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-binda')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Survey of the Longshan Grottoes and Tongzisi Site</h3>
+                <p class="modal-subtitle">Geological Research</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Activity Overview</h4>
+                    <p>The Longshan Grottoes and Tongzisi Site, located on Longshan Mountain in Jinyuan District, Taiyuan City, Shanxi Province, are both nationally protected cultural heritage sites. The Longshan Grottoes are one of China’s most prominent Taoist grottoes, while the Tongzisi Site preserves five Northern Qi caves and two Tang Dynasty caves. Both sites face serious issues of water seepage and unstable rock mass collapse.
+
+As a participant in the field research team, I took part in on-site investigations and data processing, applying geophysical methods such as ground-penetrating radar (GPR), high-density electrical resistivity, and natural electric field detection to determine the distribution of rock fissures and groundwater seepage channels. I also contributed to calculations based on physics, mathematics, and mechanics to estimate the sliding force of unstable rock bodies and the anti-sliding resistance required for reinforcement.
+
+The results provided a technical foundation for the engineering design of conservation and stabilization measures, supporting the long-term preservation of these significant cultural heritage sites.</p>
+                    <img src="images/tongzisi1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/tongzisi2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/tongzisi3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/tongzisi4.jpg" alt="Laboratory Work" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-yuanpei" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-binda')"></div>
+            <div class="modal-header">
+                <h3>GPA Optimization Modeling — Yuanpei Young Scholar Program</h3>
+                <p class="modal-subtitle">Academic Activity</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Activity Overview</h4>
+                    <p>As part of the Yuanpei Young Scholar Program, this research project focused on developing a mathematical optimization model aimed at maximizing GPA under a fixed time constraint. The work involved formulating the problem using optimization theory, translating it into a computational model, and implementing the solution through Gurobi, a mathematical programming solver. The project enhanced understanding of quantitative analysis, algorithmic thinking, and model implementation in academic performance optimization.</p>
+                    <img src="images/yuanpei1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yuanpei2.jpg" alt="Laboratory Work" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-yungangshiku" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-teaching')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Investigation at the Yungang Grottoes</h3>
+                <p class="modal-subtitle">Geological Study</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Program Overview</h4>
+                    <p>The Yungang Grottoes, located in Datong City, Shanxi Province, are a nationally protected cultural heritage site and a UNESCO World Heritage site. The grottoes face severe crack-induced water seepage problems, posing risks to their preservation.
+
+To address these issues, the project employed various geophysical exploration methods, including ground-penetrating radar (GPR), high-density electrical resistivity, borehole seismic surveys, borehole electrical detection, and natural electric field detection. These techniques enabled the identification of water seepage channels within the grotto formations, providing a technical foundation for the design and implementation of waterproofing and protective engineering measures.</p>
+                </div>
+                <div class="modal-section">
+                    <video controls class="modal-video">
+                        <source src="videos/yungangshiku.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-gallery">
+                    <img src="images/yungangshiku1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku4.jpg" alt="Laboratory Work" class="modal-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-jindengsi" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-teaching')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Survey of the Jindeng Temple Grottoes</h3>
+                <p class="modal-subtitle">Geological Study</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Program Overview</h4>
+                    <p>Located in Pingshun County, Changzhi City, Shanxi Province, the Jindeng Temple Grottoes are a nationally protected cultural heritage site. The grotto sculptures face deterioration risks caused by karst fissures and groundwater infiltration.
+
+This project employed multiple geophysical surveying methods—including ground-penetrating radar (GPR), nuclear magnetic resonance (NMR), natural electric field detection, high-density resistivity, and seismic imaging—to investigate the distribution characteristics of karst fissures and cavities within the surrounding rock. The study aimed to identify the pathways of groundwater seepage and provide a scientific basis for the preservation and reinforcement of the grotto structures.</p>
+                </div>
+                <div class="modal-section">
+                    <video controls class="modal-video">
+                        <source src="videos/jindengsi.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-gallery">
+                    <img src="images/jindengsi2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/jindengsi3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/jindengsi4.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/jindengsi5.jpg" alt="Laboratory Work" class="modal-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+       
+    <div id="modal-budalagong" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-binda')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Study of the Potala Palace</h3>
+                <p class="modal-subtitle">Geological Research</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Activity Overview</h4>
+                    <p>Located in Lhasa, Tibet Autonomous Region, the Potala Palace is both a nationally protected cultural heritage site and a UNESCO World Heritage landmark. In recent years, a significant rise in the groundwater level in Lhasa has raised concerns about potential risks to the structural safety and long-term stability of this historic monument.
+
+As a member of the field research team, I participated in on-site geophysical investigations and data analysis. Our work involved deploying multiple geophysical exploration techniques, including ground-penetrating radar (GPR), high-density electrical resistivity imaging, and natural electric field detection, to examine the depth and flow direction of groundwater beneath and around the Potala Palace complex. I assisted in data collection, signal interpretation, and visualization of subsurface structures, which were crucial for identifying groundwater pathways.
+
+The research provided technical data and a scientific foundation for assessing the effects of groundwater level fluctuations on the preservation and structural integrity of the Palace’s ancient architecture, contributing to the long-term protection of this cultural heritage site.</p>
+                    <img src="images/budalagong1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/budalaong2.jpg" alt="Laboratory Work" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Community Service Modals -->
+    <div id="modal-teaching" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-teaching')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Investigation at the Yungang Grottoes</h3>
+                <p class="modal-subtitle">Geological Study</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Program Overview</h4>
+                    <p>The Yungang Grottoes, located in Datong City, Shanxi Province, are a nationally protected cultural heritage site and a UNESCO World Heritage site. The grottoes face severe crack-induced water seepage problems, posing risks to their preservation.
+
+To address these issues, the project employed various geophysical exploration methods, including ground-penetrating radar (GPR), high-density electrical resistivity, borehole seismic surveys, borehole electrical detection, and natural electric field detection. These techniques enabled the identification of water seepage channels within the grotto formations, providing a technical foundation for the design and implementation of waterproofing and protective engineering measures.</p>
+                </div>
+                <div class="modal-section">
+                    <video controls class="modal-video">
+                        <source src="videos/yungangshiku.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-gallery">
+                    <img src="images/yungangshiku1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku4.jpg" alt="Laboratory Work" class="modal-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="modal-environment" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-teaching')"></div>
+            <div class="modal-header">
+                <h3>Geophysical Investigation at the Yungang Grottoes</h3>
+                <p class="modal-subtitle">Geological Study</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Program Overview</h4>
+                    <p>The Yungang Grottoes, located in Datong City, Shanxi Province, are a nationally protected cultural heritage site and a UNESCO World Heritage site. The grottoes face severe crack-induced water seepage problems, posing risks to their preservation.
+
+To address these issues, the project employed various geophysical exploration methods, including ground-penetrating radar (GPR), high-density electrical resistivity, borehole seismic surveys, borehole electrical detection, and natural electric field detection. These techniques enabled the identification of water seepage channels within the grotto formations, providing a technical foundation for the design and implementation of waterproofing and protective engineering measures.</p>
+                </div>
+                <div class="modal-section">
+                    <video controls class="modal-video">
+                        <source src="videos/yungangshiku.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-gallery">
+                    <img src="images/yungangshiku1.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku2.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku3.jpg" alt="Laboratory Work" class="modal-image">
+                    <img src="images/yungangshiku4.jpg" alt="Laboratory Work" class="modal-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-foodbank" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-foodbank')"></div>
+            <div class="modal-header">
+                <h3>Local Food Bank Support</h3>
+                <p class="modal-subtitle">Fighting Food Insecurity in Our Community</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Volunteer Work</h4>
+                    <p>Regular volunteer at the local food bank, helping with food distribution, inventory management, and organizing donation drives. This work has opened my eyes to food insecurity issues in our community and the importance of collective action.</p>
+                    <img src="images/foodbank-distribution.jpg" alt="Food Distribution" class="modal-image">
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="stat-number">2000+</div>
+                        <div class="stat-label">Meals Distributed</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">Families Helped</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">150</div>
+                        <div class="stat-label">Hours Volunteered</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Donation Drive Success</h4>
+                    <p>Organized school-wide food drives that collected over 1,500 pounds of non-perishable items. Created awareness campaigns using social media and digital tools to maximize participation and impact.</p>
+                    <div class="modal-gallery">
+                        <img src="images/foodbank-drive.jpg" alt="Donation Drive">
+                        <img src="images/foodbank-sorting.jpg" alt="Sorting Donations">
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Community Impact</h4>
+                    <p>This experience has reinforced my commitment to using my skills – whether technical or organizational – to address social issues. It's shown me that meaningful change starts with consistent, compassionate action.</p>
+                    <video controls class="modal-video">
+                        <source src="videos/foodbank-impact.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extracurricular Modals -->
+    <div id="modal-robotics" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-robotics')"></div>
+            <div class="modal-header">
+                <h3>Robotics Team Captain</h3>
+                <p class="modal-subtitle">Leading Innovation in Competitive Robotics</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Team Leadership</h4>
+                    <p>As captain of our school's robotics team, I lead a diverse group of 15 students in designing, building, and programming competitive robots. Our team participates in regional FIRST Robotics competitions, tackling complex engineering challenges that require creativity, technical skill, and teamwork.</p>
+                    <img src="images/robotics-build.jpg" alt="Building the Robot" class="modal-image">
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="stat-number">2nd</div>
+                        <div class="stat-label">Regional Placement</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Hours Invested</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Technical Achievements</h4>
+                    <p>Developed autonomous navigation systems using computer vision and machine learning algorithms. Our robot successfully completed complex tasks including precision object manipulation, rapid movement, and strategic gameplay.</p>
+                    <video controls class="modal-video">
+                        <source src="videos/robotics-action.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Team Culture & Growth</h4>
+                    <p>Beyond technical success, I've worked to build an inclusive team culture where every member contributes their unique skills. We've mentored rookie teams and hosted workshops to spread robotics education in our community.</p>
+                    <div class="modal-gallery">
+                        <img src="images/robotics-team-photo.jpg" alt="Team Photo">
+                        <img src="images/robotics-award.jpg" alt="Award Ceremony">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-modelun" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-modelun')"></div>
+            <div class="modal-header">
+                <h3>Model UN Delegate</h3>
+                <p class="modal-subtitle">Developing Global Leadership & Diplomatic Skills</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Conference Participation</h4>
+                    <p>Active participant in Model United Nations conferences, representing various nations and tackling pressing global issues from climate change to international security. This experience has broadened my understanding of geopolitics, cultural perspectives, and collaborative problem-solving.</p>
+                    <img src="images/modelun-conference.jpg" alt="MUN Conference" class="modal-image">
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Conferences Attended</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Awards Received</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Countries Represented</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Notable Achievements</h4>
+                    <p>Received "Best Delegate" award at the State MUN Conference for outstanding diplomacy and resolution drafting. Successfully built consensus among opposing viewpoints and authored resolutions that addressed complex environmental and technological policy challenges.</p>
+                    <div class="modal-gallery">
+                        <img src="images/modelun-debate.jpg" alt="Debate Session">
+                        <img src="images/modelun-award-ceremony.jpg" alt="Award Reception">
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Skills Development</h4>
+                    <p>Model UN has honed my public speaking, negotiation, and research skills while teaching me to see issues from multiple perspectives. These experiences complement my technical interests by emphasizing the human and policy dimensions of global challenges.</p>
+                    <video controls class="modal-video">
+                        <source src="videos/modelun-speech.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-basketball" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-basketball')"></div>
+            <div class="modal-header">
+                <h3>Varsity Basketball</h3>
+                <p class="modal-subtitle">Starting Point Guard & Team Leader</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Athletic Journey</h4>
+                    <p>As starting point guard for our varsity basketball team, I balance athletic excellence with academic achievement. Basketball has taught me discipline, resilience, and the importance of teamwork – lessons that apply to every aspect of my life.</p>
+                    <img src="images/basketball-game.jpg" alt="Game Action" class="modal-image">
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="stat-number">8.5</div>
+                        <div class="stat-label">Assists Per Game</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">15-8</div>
+                        <div class="stat-label">Season Record</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">3yrs</div>
+                        <div class="stat-label">Varsity Experience</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Leadership on the Court</h4>
+                    <p>As point guard, I'm responsible for running the offense, making split-second decisions, and keeping the team cohesive under pressure. This role has developed my leadership skills and taught me to stay calm in high-stakes situations.</p>
+                    <video controls class="modal-video">
+                        <source src="videos/basketball-highlights.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Balancing Act</h4>
+                    <p>Maintaining a 4.0 GPA while competing at the varsity level requires exceptional time management and dedication. The discipline required for early morning practices and late-night study sessions has prepared me for the rigors of college academics and research.</p>
+                    <div class="modal-gallery">
+                        <img src="images/basketball-practice.jpg" alt="Team Practice">
+                        <img src="images/basketball-celebration.jpg" alt="Victory Celebration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-newspaper" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('modal-newspaper')"></div>
+            <div class="modal-header">
+                <h3>School Newspaper Editor</h3>
+                <p class="modal-subtitle">Managing Digital Journalism & STEM Communication</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Editorial Leadership</h4>
+                    <p>As editor of our school's digital newspaper, I manage a team of student journalists and oversee publication of weekly issues covering school news, science, technology, and student perspectives. This role combines my interests in technology, communication, and community engagement.</p>
+                    <img src="images/newspaper-office.jpg" alt="Newsroom" class="modal-image">
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Articles Published</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="stat-number">5K+</div>
+                        <div class="stat-label">Monthly Readers</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Digital Innovation</h4>
+                    <p>Redesigned the newspaper's website using modern web technologies, improving user experience and accessibility. Implemented multimedia storytelling with videos, interactive graphics, and photo essays that engage our digital-native audience.</p>
+                    <div class="modal-gallery">
+                        <img src="images/newspaper-website.jpg" alt="Website Design">
+                        <img src="images/newspaper-meeting.jpg" alt="Editorial Meeting">
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Science Communication</h4>
+                    <p>Launched a dedicated STEM section featuring student research, science news, and technology trends. This initiative helps bridge the gap between scientific community and general readership, making complex topics accessible and engaging.</p>
+                    <video controls class="modal-video">
+                        <source src="videos/newspaper-behind-scenes.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <a href="mailto:jiaqi.peng@email.com">jiaqi.peng@email.com</a>
+                <a href="tel:+1234567890">(123) 456-7890</a>
+                <a href="https://linkedin.com/in/jiaqi-peng" target="_blank">LinkedIn</a>
+                <a href="https://github.com/jiaqi-peng" target="_blank">GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2025 Jiaqi Tony Peng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-up animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section, .hero');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = 'rgba(255, 255, 255, 0.8)';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = '#fff';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
